@@ -1,0 +1,32 @@
+{
+  "name": "makina",
+  "version": "1.0.0",
+  "description": "Simple finite state machine. With guard conditions and callbacks",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/babel-node node_modules/.bin/tape 'tests/**/*.js' | ./node_modules/.bin/faucet",
+    "lint": "./node_modules/.bin/eslint src/ tests/",
+    "build": "./node_modules/.bin/babel -d dist/ src/",
+    "clean": "rm -r node_modules dist",
+    "prepublish": "npm run build"
+  },
+  "keywords": [
+    "state machine",
+    "finite state machine",
+    "fsm",
+    "sm"
+  ],
+  "author": "atabel",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "devDependencies": {
+    "babel-cli": "^6.0.14",
+    "babel-preset-es2015": "^6.0.14",
+    "eslint": "^1.8.0",
+    "faucet": "0.0.1",
+    "tape": "^4.2.2"
+  }
+}
