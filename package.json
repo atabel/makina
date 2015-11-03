@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "./node_modules/.bin/babel-node node_modules/.bin/tape 'tests/**/*.js' | ./node_modules/.bin/faucet",
+    "test-browser": "./node_modules/.bin/browserify tests/test.js | ./node_modules/.bin/testling",
     "lint": "./node_modules/.bin/eslint src/ tests/",
     "build": "./node_modules/.bin/babel -d dist/ src/",
     "clean": "rm -r node_modules dist",
@@ -18,15 +19,43 @@
   ],
   "author": "atabel",
   "license": "MIT",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/atabel/makina.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atabel/makina.git"
   },
   "devDependencies": {
     "babel-cli": "^6.0.14",
     "babel-preset-es2015": "^6.0.14",
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
     "eslint": "^1.8.0",
     "faucet": "0.0.1",
-    "tape": "^4.2.2"
+    "tape": "^4.2.2",
+    "testling": "^1.7.1"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015"
+          ]
+        }
+      ]
+    ]
+  },
+  "testling": {
+    "files": "test/*.js",
+    "browsers": [
+      "ie/9..latest",
+      "chrome/22..latest",
+      "firefox/16..latest",
+      "safari/latest",
+      "opera/11.0..latest",
+      "iphone/6..latest",
+      "ipad/6..latest",
+      "android-browser/4.2..latest"
+    ]
   }
 }

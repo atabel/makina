@@ -1,7 +1,7 @@
 const objectMap = (obj, fn) => {
     const res = {};
-    Object.entries(obj).map(([k, v]) => {
-        res[k] = fn(v, k, obj);
+    Object.keys(obj).map(k => {
+        res[k] = fn(obj[k], k, obj);
     });
     return res;
 };
