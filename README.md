@@ -2,6 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/makina.svg)](https://www.npmjs.com/package/makina)
 [![npm](https://img.shields.io/npm/l/makina.svg)](https://www.npmjs.com/package/makina)
+[![Build Status](https://img.shields.io/travis/atabel/makina.svg?branch=master)](https://travis-ci.org/atabel/makina)
 
 Simple finite state machine. With guard conditions and callbacks
 
