@@ -17,7 +17,7 @@ const createStateMachine = function ({initState, transitions}) {
     };
 
     const createState = (stateTransitions, stateName) =>
-        Object.assign({getState: () => stateName}, objectMap(stateTransitions, createTransitionMethod(stateName)));
+        Object.assign({getStateName: () => stateName}, objectMap(stateTransitions, createTransitionMethod(stateName)));
 
     const transitionsByState = objectMap(groupBy('fromState', formattedTransitions), groupBy('transitionName'));
     states = objectMap(transitionsByState, createState);
@@ -28,7 +28,10 @@ const createStateMachine = function ({initState, transitions}) {
         }
     });
 
-    return states[initState];
+    return {
+        getState: (stateName) => states[stateName],
+        getInitState: () => states[initState]
+    };
 };
 
 export default createStateMachine;

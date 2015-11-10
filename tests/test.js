@@ -18,9 +18,9 @@ const mySm = createStateMachine({
 
 test('Simple state machine', t => {
 
-    const state = mySm.start().continue().goBack().continue().getState();
+    const stateName = mySm.getInitState().start().continue().goBack().continue().getStateName();
 
-    t.equals(state, 'STATE2',
+    t.equals(stateName, 'STATE2',
         'transitions correctly');
     t.end();
 });
@@ -40,7 +40,7 @@ test('Callback functions', t => {
         ]
     });
 
-    stateMachine.start(transitionData);
+    stateMachine.getInitState().start(transitionData);
 });
 
 test('Guard conditions', t => {
@@ -61,9 +61,9 @@ test('Guard conditions', t => {
         ]
     });
 
-    const state = stateMachine.start(transitionData).getState();
+    const stateName = stateMachine.getInitState().start(transitionData).getStateName();
 
-    t.equals(state, 'STATE1',
+    t.equals(stateName, 'STATE1',
         'Transitions when guard condition is true');
 });
 
@@ -86,8 +86,34 @@ test('Guard conditions', t => {
         ]
     });
 
-    const state = stateMachine.start(transitionData).getState();
+    const stateName = stateMachine.getInitState().start(transitionData).getStateName();
 
-    t.equals(state, 'INIT',
+    t.equals(stateName, 'INIT',
         'Does not transition when guard condition is false');
+});
+
+test('getInitState', t => {
+    const stateMachine = createStateMachine({
+        initState: 'INIT',
+        transitions: [
+            ['INIT', 'start', always,  'STATE1']
+        ]
+    });
+
+    t.equals(stateMachine.getInitState(), 'INIT',
+        'returns the initial state');
+    t.end();
+});
+
+test('getState', t => {
+    const stateMachine = createStateMachine({
+        initState: 'INIT',
+        transitions: [
+            ['INIT', 'start', always,  'STATE1']
+        ]
+    });
+
+    t.equals(stateMachine.getState('STATE1').getStateName(), 'STATE1',
+        'returns the asked state');
+    t.end();
 });
