@@ -100,7 +100,7 @@ test('getInitState', t => {
         ]
     });
 
-    t.equals(stateMachine.getInitState(), 'INIT',
+    t.equals(stateMachine.getInitState().getStateName(), 'INIT',
         'returns the initial state');
     t.end();
 });
